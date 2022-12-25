@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 
 class ReusableCard extends StatelessWidget {
   const ReusableCard(
-      {super.key, required this.colour, required this.childCard, this.onPress});
+      {super.key, required this.colour, this.childCard, this.onPress});
   final Color colour;
-  final Widget childCard;
+  final Widget? childCard;
   final VoidCallback? onPress;
 
   @override

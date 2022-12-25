@@ -1,11 +1,17 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 // ignore_for_file: constant_identifier_names
 
-import 'package:bmi_calculator/pages/results_page.dart';
+import 'package:bmi_calculator/pages/roundicon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'package:bmi_calculator/pages/results_page.dart';
+
+import 'buttom_button.dart';
+import 'constant.dart';
 import 'icon_content.dart';
 import 'reusable_card.dart';
-import 'constant.dart';
+import 'calculator_brain.dart';
 
 enum Gender {
   Male,
@@ -74,7 +80,9 @@ class _HomePageState extends State<HomePage> {
                           ? activeColor
                           : inActiveColor,
                       childCard: const iconContent(
-                          iconMaterial: FontAwesomeIcons.mars, label: "Male"),
+                        iconMaterial: FontAwesomeIcons.mars,
+                        label: "Male",
+                      ),
                     ),
                   ),
                   Expanded(
@@ -237,57 +245,24 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-            GestureDetector(
+            ButtomButton(
               onTap: () {
+                CalculatorBrain calc =
+                    CalculatorBrain(height: height, weight: weight);
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const ResultPage()),
+                  MaterialPageRoute(
+                      builder: (context) => ResultPage(
+                          bmiResult: calc.calculateBMI(),
+                          resultText: calc.getResult(),
+                          interpretation: calc.getInterpretation())),
                 );
               },
-              child: Container(
-                child: Center(
-                  child: Text(
-                    'CALCULATE',
-                    style: KLargeButtonTextStyle,
-                  ),
-                ),
-                color: const Color(0xffEB1555),
-                margin: const EdgeInsets.only(top: 10.0),
-                width: double.infinity,
-                height: buttomContainerHeight,
-              ),
-            )
+              buttonButtomName: 'CALCULATE',
+            ),
           ],
         ),
       ),
     );
   }
 }
-
-class RoundIconButton extends StatelessWidget {
-  const RoundIconButton({super.key, required this.icon, required this.onPress});
-  final IconData icon;
-  final VoidCallback onPress;
-
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      child: Icon(
-        icon,
-        color: Colors.white,
-        size: 24,
-      ),
-      onPressed: onPress,
-      elevation: 10,
-      constraints: const BoxConstraints.tightFor(
-        width: 56.0,
-        height: 56.0,
-      ),
-      shape: CircleBorder(),
-      fillColor: inActiveColor,
-    );
-  }
-}
-
-// ignore: camel_case_types
-

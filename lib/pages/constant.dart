@@ -15,3 +15,23 @@ const KLargeButtonTextStyle = TextStyle(
   fontWeight: FontWeight.bold,
   color: Colors.white,
 );
+const KTitleTopButton = TextStyle(
+  fontSize: 40,
+  fontWeight: FontWeight.bold,
+  color: Colors.white,
+);
+const KResultTitle = TextStyle(
+  fontSize: 20,
+  fontWeight: FontWeight.bold,
+  color: Color.fromARGB(255, 255, 255, 255),
+);
+const KBMITextStyle = TextStyle(
+  fontSize: 100,
+  fontWeight: FontWeight.bold,
+  color: Colors.white,
+);
+const KBMIBodyStyle = TextStyle(
+  fontSize: 20,
+  fontWeight: FontWeight.w400,
+  color: Colors.white,
+);
